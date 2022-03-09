@@ -37,8 +37,8 @@ def new_post():
         # category = Category.query.get(form.category.data)
         # post = Post(title=title, body=body, category=category)
         category_id = form.category.data
-        post = Post(title=title, body=body, category_id=category_id)
-
+        timestamp = form.timestamp.data
+        post = Post(title=title, body=body, category_id=category_id,timestamp=timestamp)
         db.session.add(post)
         db.session.commit()
         flash('Post created.', 'success')

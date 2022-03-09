@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="data-dev">
-  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.4">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.23">
     <root id="1"/>
     <schema id="2" parent="1" name="main">
       <Current>1</Current>
-      <Visible>1</Visible>
     </schema>
     <collation id="3" parent="1" name="BINARY"/>
     <collation id="4" parent="1" name="NOCASE"/>
@@ -18,44 +17,44 @@
       <System>1</System>
     </table>
     <column id="12" parent="6" name="id">
-      <DataType>INTEGER|0</DataType>
+      <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="13" parent="6" name="username">
       <Position>1</Position>
-      <DataType>VARCHAR(20)|0</DataType>
+      <DataType>VARCHAR(20)|0s</DataType>
     </column>
     <column id="14" parent="6" name="password_hash">
       <Position>2</Position>
-      <DataType>VARCHAR(128)|0</DataType>
+      <DataType>VARCHAR(128)|0s</DataType>
     </column>
     <column id="15" parent="6" name="blog_title">
       <Position>3</Position>
-      <DataType>VARCHAR(60)|0</DataType>
+      <DataType>VARCHAR(60)|0s</DataType>
     </column>
     <column id="16" parent="6" name="blog_sub_title">
       <Position>4</Position>
-      <DataType>VARCHAR(100)|0</DataType>
+      <DataType>VARCHAR(100)|0s</DataType>
     </column>
     <column id="17" parent="6" name="name">
       <Position>5</Position>
-      <DataType>VARCHAR(30)|0</DataType>
+      <DataType>VARCHAR(30)|0s</DataType>
     </column>
     <column id="18" parent="6" name="about">
       <Position>6</Position>
-      <DataType>TEXT|0</DataType>
+      <DataType>TEXT|0s</DataType>
     </column>
     <key id="19" parent="6">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="20" parent="7" name="id">
-      <DataType>INTEGER|0</DataType>
+      <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="21" parent="7" name="name">
       <Position>1</Position>
-      <DataType>VARCHAR(30)|0</DataType>
+      <DataType>VARCHAR(30)|0s</DataType>
     </column>
     <index id="22" parent="7" name="sqlite_autoindex_category_1">
       <NameSurrogate>1</NameSurrogate>
@@ -72,44 +71,44 @@
       <UnderlyingIndexName>sqlite_autoindex_category_1</UnderlyingIndexName>
     </key>
     <column id="25" parent="8" name="id">
-      <DataType>INTEGER|0</DataType>
+      <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="26" parent="8" name="author">
       <Position>1</Position>
-      <DataType>VARCHAR(30)|0</DataType>
+      <DataType>VARCHAR(30)|0s</DataType>
     </column>
     <column id="27" parent="8" name="email">
       <Position>2</Position>
-      <DataType>VARCHAR(254)|0</DataType>
+      <DataType>VARCHAR(254)|0s</DataType>
     </column>
     <column id="28" parent="8" name="site">
       <Position>3</Position>
-      <DataType>VARCHAR(255)|0</DataType>
+      <DataType>VARCHAR(255)|0s</DataType>
     </column>
     <column id="29" parent="8" name="body">
       <Position>4</Position>
-      <DataType>TEXT|0</DataType>
+      <DataType>TEXT|0s</DataType>
     </column>
     <column id="30" parent="8" name="from_admin">
       <Position>5</Position>
-      <DataType>BOOLEAN|0</DataType>
+      <DataType>BOOLEAN|0s</DataType>
     </column>
     <column id="31" parent="8" name="reviewed">
       <Position>6</Position>
-      <DataType>BOOLEAN|0</DataType>
+      <DataType>BOOLEAN|0s</DataType>
     </column>
     <column id="32" parent="8" name="timestamp">
       <Position>7</Position>
-      <DataType>DATETIME|0</DataType>
+      <DataType>DATETIME|0s</DataType>
     </column>
     <column id="33" parent="8" name="replied_id">
       <Position>8</Position>
-      <DataType>INTEGER|0</DataType>
+      <DataType>INTEGER|0s</DataType>
     </column>
     <column id="34" parent="8" name="post_id">
       <Position>9</Position>
-      <DataType>INTEGER|0</DataType>
+      <DataType>INTEGER|0s</DataType>
     </column>
     <index id="35" parent="8" name="ix_comment_timestamp">
       <ColNames>timestamp</ColNames>
@@ -136,44 +135,44 @@
       <Predicate>reviewed IN (0, 1)</Predicate>
     </check>
     <column id="41" parent="9" name="id">
-      <DataType>INTEGER|0</DataType>
+      <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="42" parent="9" name="name">
       <Position>1</Position>
-      <DataType>VARCHAR(30)|0</DataType>
+      <DataType>VARCHAR(30)|0s</DataType>
     </column>
     <column id="43" parent="9" name="url">
       <Position>2</Position>
-      <DataType>VARCHAR(255)|0</DataType>
+      <DataType>VARCHAR(255)|0s</DataType>
     </column>
     <key id="44" parent="9">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="45" parent="10" name="id">
-      <DataType>INTEGER|0</DataType>
+      <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="46" parent="10" name="title">
       <Position>1</Position>
-      <DataType>VARCHAR(60)|0</DataType>
+      <DataType>VARCHAR(60)|0s</DataType>
     </column>
     <column id="47" parent="10" name="body">
       <Position>2</Position>
-      <DataType>TEXT|0</DataType>
+      <DataType>TEXT|0s</DataType>
     </column>
     <column id="48" parent="10" name="timestamp">
       <Position>3</Position>
-      <DataType>DATETIME|0</DataType>
+      <DataType>DATETIME|0s</DataType>
     </column>
     <column id="49" parent="10" name="can_comment">
       <Position>4</Position>
-      <DataType>BOOLEAN|0</DataType>
+      <DataType>BOOLEAN|0s</DataType>
     </column>
     <column id="50" parent="10" name="category_id">
       <Position>5</Position>
-      <DataType>INTEGER|0</DataType>
+      <DataType>INTEGER|0s</DataType>
     </column>
     <index id="51" parent="10" name="ix_post_timestamp">
       <ColNames>timestamp</ColNames>
@@ -192,23 +191,23 @@
       <Predicate>can_comment IN (0, 1)</Predicate>
     </check>
     <column id="55" parent="11" name="type">
-      <DataType>text|0</DataType>
+      <DataType>text|0s</DataType>
     </column>
     <column id="56" parent="11" name="name">
       <Position>1</Position>
-      <DataType>text|0</DataType>
+      <DataType>text|0s</DataType>
     </column>
     <column id="57" parent="11" name="tbl_name">
       <Position>2</Position>
-      <DataType>text|0</DataType>
+      <DataType>text|0s</DataType>
     </column>
     <column id="58" parent="11" name="rootpage">
       <Position>3</Position>
-      <DataType>integer|0</DataType>
+      <DataType>integer|0s</DataType>
     </column>
     <column id="59" parent="11" name="sql">
       <Position>4</Position>
-      <DataType>text|0</DataType>
+      <DataType>text|0s</DataType>
     </column>
   </database-model>
 </dataSource>
