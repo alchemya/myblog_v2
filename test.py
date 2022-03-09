@@ -72,3 +72,4 @@ sqll="SELECT DISTINCT strftime('%Y', timestamp)  as year from post"
 
 kkl=db.session.execute(sqll)
 kk_count=db.session.execute(sql_year_count)
+print("lalal")
