@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Settings</h1>
+    </div>
+    {{ render_form(form) }}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename='tinymce/tinymce.min.js') }}"></script>
+    <script>tinymce.init({ selector:'textarea',
+    language:'zh_CN', //调用放在langs文件夹内的语
+    height: 700,
+    plugins: [ 'quickbars','link','table','code','image','codesample'], //选择需加载的插件
+    //选中时出现的快捷工具，与插件有依赖关系
+    quickbars_selection_toolbar: 'bold italic forecolor | link blockquote quickimage',
+
+
+    });</script>
+{% endblock %}

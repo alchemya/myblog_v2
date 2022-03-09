@@ -7,15 +7,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}{% endblock title %} - {{ admin.blog_title|default('Blog Title') }}</title>
         <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/perfect_blue.min.css') }}" type="text/css">
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/%s.min.css' % request.cookies.get('theme',"perfect_blue")) }}"
+              type="text/css">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/prism.css') }}" type="text/css">
     {% endblock head %}
 </head>
 <body>
 {% block nav %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('blog.index') }}">{{ admin.blog_title }}</a>
+            <a class="navbar-brand" href="{{ url_for('blog.index') }}">Alchemy&z</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                     aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,7 +26,61 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     {{ render_nav_item('blog.index', 'Home') }}
-                    {{ render_nav_item('blog.about', 'About') }}
+                   <li class="nav-item">
+                      <a class="nav-link" href="https://github.com/alchemya" target="_blank">Projects</a>
+                    </li>
+                     {{ render_nav_item('blog.about', 'About Me') }}
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">我的公众号</a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">青年塔列朗</a>
+                        <a class="dropdown-item" href="#">闪光的哈萨维</a>
+
+                      </div>
+                    </li>
+                </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                New <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url_for('admin.new_post') }}">Post</a>
+                                <a class="dropdown-item" href="{{ url_for('admin.new_category') }}">Category</a>
+                                <a class="dropdown-item" href="{{ url_for('admin.new_link') }}">Link</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                Manage <span class="caret"></span>
+                                {% if unread_comments %}
+                                    <span class="badge badge-success">new</span>
+                                {% endif %}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url_for('admin.manage_post') }}">Post</a>
+                                <a class="dropdown-item" href="{{ url_for('admin.manage_category') }}">Category</a>
+                                <a class="dropdown-item" href="{{ url_for('admin.manage_comment') }}">
+                                    Comment
+                                    {% if unread_comments %}
+                                        <span class="badge badge-success">{{ unread_comments }}</span>
+                                    {% endif %}
+                                </a>
+                                <a class="dropdown-item" href="{{ url_for('admin.manage_link') }}">Link</a>
+                            </div>
+                        </li>
+                        {{ render_nav_item('admin.settings', 'Settings') }}
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -38,12 +95,22 @@
         </div>
     {% endfor %}
     {% block content %}{% endblock content %}
+    {% block year_content %}{% endblock year_content %}
     {% block footer %}
         <footer>
             <p class="float-left">
-                <small> &copy; 2018 <a href="http://greyli.com" title="Written by Grey Li">Grey Li</a> -
-                    <a href="https://github.com/greyli/bluelog" title="Fork me on GitHub">GitHub</a> -
-                    <a href="http://helloflask.com" title="A HelloFlask project">HelloFlask</a>
+                <small> &copy; 2022 <a href="http://yuchen.wiki" title="Written by Yuchen Ran">TalleyRan</a> -
+                    <a href="https://github.com/alchemya" title="Find me on GitHub">GitHub</a> -
+                    <a href="http://helloflask.com" title="finders,keepers">My blog Version 1.0</a>
+                </small>
+            </p>
+            <p class="float-right">
+                <small>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('auth.logout', next=request.full_path) }}">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('auth.login', next=request.full_path) }}">Login</a>
+                    {% endif %}
                 </small>
             </p>
         </footer>
@@ -55,7 +122,9 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+     <script type="text/javascript" src="{{ url_for('static', filename='js/prism.js') }}"></script>
     {{ moment.include_moment(local_js=url_for('static', filename='js/moment-with-locales.min.js')) }}
+    {{ moment.locale("auto_detect=True") }}
 {% endblock %}
 </body>
 </html>

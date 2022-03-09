@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
+
+{% block title %}{{ year }}{% endblock %}
+
+{% block year_content %}
+    <div class="page-header">
+        <h1>Archives in {{ year }} Year</h1>
+        <p class="text-muted">{{ lenths }} posts</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            {% include "blog/_posts.html" %}
+            <div class="page-footer">{{ render_pagination(pagination) }}</div>
+        </div>
+        <div class="col-sm-4 sidebar">
+            {% include "blog/_sidebar.html" %}
+        </div>
+    </div>
+{% endblock %}
