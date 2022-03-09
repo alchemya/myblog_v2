@@ -18,7 +18,7 @@
 {% block nav %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('blog.index') }}">Alchemy&z</a>
+            <a class="navbar-brand" href="{{ url_for('blog.index') }}">Alchemy&Z</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                     aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,8 +39,8 @@
                       </div>
                     </li>
                 </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <form class="form-inline my-2 my-lg-0" action="{{ url_for('blog.search') }}" method ="get">
+                <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
             </form>
 
@@ -99,9 +99,9 @@
     {% block footer %}
         <footer>
             <p class="float-left">
-                <small> &copy; 2022 <a href="http://yuchen.wiki" title="Written by Yuchen Ran">TalleyRan</a> -
+                <small> &copy; 2022 <a href="http://8.214.18.73" title="Written by Yuchen Ran">TalleyRan</a> -
                     <a href="https://github.com/alchemya" title="Find me on GitHub">GitHub</a> -
-                    <a href="http://helloflask.com" title="finders,keepers">My blog Version 1.0</a>
+                    <a href="https://yuchen.pythonanywhere.com" title="finders,keepers">My blog Version 1.0</a>
                 </small>
             </p>
             <p class="float-right">

@@ -14,6 +14,17 @@ def index(page):
     posts=pagination.items
     return render_template("blog/index.html",pagination=pagination,posts=posts)
 
+@blog_bp.route("/search",defaults={"page":1})
+@blog_bp.route("/search/<int:page>")
+def search(page):
+    question=request.args.get("q")
+    if not question:
+        flash('Please Input Search Info. By Yuchen', 'info')
+        return redirect(url_for('blog.index'))
+    pagination=Post.query.filter(Post.title.like('%{keyword}%'.format(keyword=question))).paginate(page,per_page=current_app.config["KKBLOG_POST_PER_PAGE"])
+    posts = pagination.items
+    return render_template("blog/index.html", pagination=pagination, posts=posts)
+
 
 
 @blog_bp.route('/post/<int:post_id>', methods=['GET', 'POST'])
